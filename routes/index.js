@@ -1,11 +1,19 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let mysql = require('mysql');
+let router = express.Router();
 
 /* GET home page. */
-let myJSON = [{"name":"John", "age":31, "city":"New York"},{"name":"abhijeet", "age":31, "city":"New York"},{"name":"hemant", "age":31, "city":"New York"},{"name":"sanjana", "age":31, "city":"New York"},{"name":"gunjan", "age":31, "city":"New York"},{"name":"akshya", "age":31, "city":"New York"}];
+let con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "hemant",
+  database: "fc"
+});
+
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', json : myJSON });
+
+  res.render('index', { title: 'Express', json : result });
 });
 
 
@@ -15,7 +23,15 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', { title: 'Express', json : myJSON });
+		con.connect(function(err) {
+	  if (err) throw err;
+	  con.query("select * from persons;", function (err, result) {
+	    if (err) throw err;
+		res.render('dashboard', { title: 'Express', json : result });
+
+	  });
+	});
+
 });
 
 
