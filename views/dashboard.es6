@@ -53,7 +53,7 @@ class DashBoard extends MyLayout {
                               <td>
                                   <div class="row">
                                       <div class="col-md-3">`
-                        if(i.FirstName=="abhijeet" || i.name=="sanjana"){
+                        if(i.name=="abhijeet" || i.name=="sanjana"){
                          markup+=`<img src="/images/offline.png" style="width: 20px;">`
                         } 
                         else{
@@ -62,7 +62,7 @@ class DashBoard extends MyLayout {
                       }               
                                      markup+=`</div>
                                       <div class="col-md-9" style="height: 15%;background-color:white;">
-                                          <button type="button" style="width: 110px;" class="btn btn-success">${i.FirstName}</button>
+                                          <button type="button" style="width: 110px;" class="btn btn-success">${i.name}</button>
                                       </div>
                                   </div>
                               </td>
