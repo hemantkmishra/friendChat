@@ -17,20 +17,43 @@ router.post('/', function(req, res, next) {
     res.render('index');
 });
 
-router.get('/dashboard', async (req, res, next) => {
+router.get('/dashboard', (req, res) => {
 
-    try {
-        let result;
+    let result;
 
-        result = await adminModel.getData();
-        console.log(__line, result);
+    adminModel.getData()
+        .then(result => {
+            console.log(__line, result);
+        })
+        .catch(err => {
+            console.log(__line, err);
+        })
 
-        res.render('dashboard', { title: 'Express', json: result });
-    } catch (err) {
-        console.log(err)
-    }
-
+    res.render('dashboard', { title: 'Express', json: result });
 });
+
+router.get('/listpage', (req, res) => {
+
+  adminModel.getSingleNameData()
+  .then(result=>{
+    res.render('listpage', { title: 'Express', result : result});
+  }).catch(err=>{
+    console.log(__line,err)
+  })
+});
+
+router.post('/listpage', (req, res) => {
+let name = req.body.fname
+console.log(__line,name);
+  adminModel.getSingleNameData(name)
+  .then(result=>{
+    res.render('listpage', { title: 'Express', result : result});
+  }).catch(err=>{
+    console.log(__line,err)
+  })
+});
+
+
 
 
 router.post('/', async (req, res, next) => {

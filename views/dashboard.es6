@@ -3,7 +3,6 @@ const MyLayout = require('./layout.es6')
 class DashBoard extends MyLayout {
     content () {
         const data = this.data
-        console.log(data.json)
         const posts = data.posts
        let markup=``
          markup +=`<div class="row">
