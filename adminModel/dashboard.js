@@ -19,16 +19,36 @@ class dashboard extends models {
     }
 
     static getSingleNameData(name){
+        let filter = ''
+        if(name){
+            filter =`where name ="${name}"`
+        }
+
     	return new Promise((resolve, reject) => {
-    		let q =`SELECT * FROM persons where name ="${name}"`;
+    		let q =`SELECT * FROM persons ${filter}`;
     		readDB.query(q, (err,result)=>{
     			if(err){
     				reject(err)
     			}
-    			console.log(__line,result[0].name)
+    			
     			return resolve(result);
     		})
     	})
+    }
+
+    static setSingleData(name,email,password){
+        return new Promise((resolve,reject) => {
+            let query=`insert into persons(name,email,password) values("${name}","${email}","${password}")`;
+            readDB.query(query,(err,result)=>{
+                if (err) {
+                    reject(err)
+                }
+                console.log(__line,result);
+                return resolve(result);
+
+            })
+        })
+
     }
 }
 module.exports = dashboard

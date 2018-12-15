@@ -24,7 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', indexRouter);
 app.get('/dashboard', indexRouter);
 app.get('/listpage', indexRouter);
-app.post('/listpage', indexRouter)
+app.post('/listpage', indexRouter);
+app.get('/listdata',indexRouter);
+app.post('/listdata',indexRouter);
+app.post('/getfilterdata',indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
