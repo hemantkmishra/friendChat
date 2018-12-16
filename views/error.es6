@@ -1,4 +1,4 @@
-const MyLayout = require('../layout.es6')
+const MyLayout = require('./layout.es6')
 
 class Posts extends MyLayout {
     content () {
